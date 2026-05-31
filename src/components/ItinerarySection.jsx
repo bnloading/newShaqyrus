@@ -71,12 +71,12 @@ export default function ItinerarySection() {
         className="absolute w-[22%] md:w-[18%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          left: 0,
+          left: "10px",
           transformOrigin: "left top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(-10%) scaleX(1)"
-            : "translateX(-16%) scaleX(0.96)",
+            ? "translateX(0) scaleX(1)"
+            : "translateX(-6%) scaleX(0.96)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94), transform 1.4s cubic-bezier(.25,.46,.45,.94)",
         }}
@@ -87,12 +87,12 @@ export default function ItinerarySection() {
         className="absolute w-[22%] md:w-[18%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          right: 0,
+          right: "10px",
           transformOrigin: "right top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(10%) scaleX(1)"
-            : "translateX(16%) scaleX(0.96)",
+            ? "translateX(0) scaleX(1)"
+            : "translateX(6%) scaleX(0.96)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s, transform 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s",
         }}
