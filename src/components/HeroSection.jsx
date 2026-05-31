@@ -18,8 +18,10 @@ export default function HeroSection() {
           ref={videoRef}
           src={MEDIA.heroVideo}
           autoPlay
+          loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
