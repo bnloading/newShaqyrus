@@ -54,7 +54,10 @@ export default function GuestCommentsSection() {
           });
         setComments(docs);
       },
-      () => setComments([]),
+      (error) => {
+        console.error("Guest comments subscription failed:", error);
+        setComments([]);
+      },
     );
     return () => unsub();
   }, []);
