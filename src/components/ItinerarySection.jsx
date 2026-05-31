@@ -71,7 +71,7 @@ export default function ItinerarySection() {
         className="absolute w-[50%] md:w-[32%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          left: "-1.5rem",
+          left: "-5rem",
           transformOrigin: "left top",
           opacity: inView ? 1 : 0,
           transform: inView
@@ -87,7 +87,7 @@ export default function ItinerarySection() {
         className="absolute w-[50%] md:w-[32%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          right: "-1.5rem",
+          right: "-5rem",
           transformOrigin: "right top",
           opacity: inView ? 1 : 0,
           transform: inView
