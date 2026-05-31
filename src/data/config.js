@@ -64,7 +64,7 @@ export const EVENTS = {
   wedding: {
     date: "2026-06-24",
     displayDate: "24.06.2026",
-    time: "18:00",
+    time: "17:00",
     venue: '"Sky Palace" тойханасы',
     mapsUrl:
       "https://www.google.com/maps/place/SKY+Palace/@48.9660524,89.9239171,17z",
@@ -106,7 +106,7 @@ export const FIREBASE_CONFIG = {
 };
 
 // RSVP жауап беру мерзімі
-export const RSVP_DEADLINE = "2026-06-01";
+export const RSVP_DEADLINE = "2026-06-15";
 
 export const GUEST_COMMENTS = {
   kz: [
@@ -226,7 +226,8 @@ export const TRANSLATIONS = {
 
     // RSVP
     rsvp: "RSVP",
-    rsvpDeadlineText: "2026 жылдың 1 маусымына дейін жауап беруіңізді өтінеміз",
+    rsvpDeadlineText:
+      "2026 жылдың 15 маусымына дейін жауап беруіңізді өтінеміз",
     willYouJoin: "Бізге қосыласыз ба? *",
     yesAttend: "Қуанышпен қабылдаймын",
     noAttend: "Өкінішке орай, бара алмаймын",

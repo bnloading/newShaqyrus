@@ -8,7 +8,7 @@ function pad(n) {
 
 function getTimeLeft(targetDateStr) {
   const now = new Date();
-  const target = new Date(targetDateStr + "T18:00:00");
+  const target = new Date(`${targetDateStr}T${EVENTS.wedding.time}:00`);
   const diff = target - now;
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0 };
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));

@@ -10,7 +10,6 @@ import WeddingHostsSection from "./components/WeddingHostsSection";
 import CelebrationSection from "./components/CelebrationSection";
 import GuestCommentsSection from "./components/GuestCommentsSection";
 import ItinerarySection from "./components/ItinerarySection";
-import GiftSection from "./components/GiftSection";
 import RSVPSection from "./components/RSVPSection";
 import Footer from "./components/Footer";
 
@@ -96,8 +95,6 @@ export default function App() {
         <Divider />
         <CelebrationSection />
         <ItinerarySection />
-        <Divider />
-        <GiftSection />
         <Divider />
         <GuestCommentsSection />
         <RSVPSection />
