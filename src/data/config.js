@@ -160,7 +160,7 @@ export const TRANSLATIONS = {
     andRsvp: "және жауапты жолдаңыз",
 
     // Countdown
-    countdown: "Кері санақ",
+    countdown: "Тойға дейін",
     countdownUntil: "2026 жылдың 24 маусымына дейін",
     days: "Күн",
     hours: "Сағат",

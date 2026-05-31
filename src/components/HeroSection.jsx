@@ -5,9 +5,25 @@ export default function HeroSection() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+    const video = videoRef.current;
+    if (!video) {
+      return undefined;
     }
+
+    const startVideo = () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+
+    video.load();
+    startVideo();
+    video.addEventListener("loadeddata", startVideo);
+    video.addEventListener("canplay", startVideo);
+
+    return () => {
+      video.removeEventListener("loadeddata", startVideo);
+      video.removeEventListener("canplay", startVideo);
+    };
   }, []);
 
   return (
@@ -20,6 +36,7 @@ export default function HeroSection() {
           autoPlay
           loop
           muted
+          defaultMuted
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
