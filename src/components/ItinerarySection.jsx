@@ -68,10 +68,10 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainLeft}
         alt=""
-        className="absolute w-[50%] md:w-[32%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[58%] md:w-[34%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          left: "5%",
+          left: "-20%",
           transformOrigin: "left top",
           opacity: inView ? 1 : 0,
           transform: inView
@@ -84,7 +84,7 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainCenter}
         alt=""
-        className={`absolute w-[68%] md:w-[50%] h-auto max-w-none pointer-events-none select-none z-0 ${inView ? "curtain-center-in" : ""}`}
+        className={`absolute w-[76%] md:w-[52%] h-auto max-w-none pointer-events-none select-none z-0 ${inView ? "curtain-center-in" : ""}`}
         style={{
           top: "2.2%",
           left: "50%",
@@ -96,10 +96,10 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainRight}
         alt=""
-        className="absolute w-[50%] md:w-[32%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[58%] md:w-[34%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          right: "5%",
+          right: "-20%",
           transformOrigin: "right top",
           opacity: inView ? 1 : 0,
           transform: inView
