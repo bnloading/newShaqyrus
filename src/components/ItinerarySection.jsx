@@ -68,15 +68,15 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainLeft}
         alt=""
-        className="absolute w-[58%] md:w-[34%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[52%] md:w-[30%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          left: "-20%",
+          left: 0,
           transformOrigin: "left top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(0) scaleX(1)"
-            : "translateX(-8%) scaleX(0.95)",
+            ? "translateX(-34%) scaleX(1)"
+            : "translateX(-42%) scaleX(0.95)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94), transform 1.4s cubic-bezier(.25,.46,.45,.94)",
         }}
@@ -96,15 +96,15 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainRight}
         alt=""
-        className="absolute w-[58%] md:w-[34%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[52%] md:w-[30%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
-          right: "-20%",
+          right: 0,
           transformOrigin: "right top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(0) scaleX(1)"
-            : "translateX(8%) scaleX(0.95)",
+            ? "translateX(34%) scaleX(1)"
+            : "translateX(42%) scaleX(0.95)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s, transform 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s",
         }}
