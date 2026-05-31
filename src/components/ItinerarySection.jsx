@@ -68,43 +68,31 @@ export default function ItinerarySection() {
       <img
         src={IMAGES.curtainLeft}
         alt=""
-        className="absolute w-[52%] md:w-[30%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[34%] md:w-[18%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
           left: 0,
           transformOrigin: "left top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(-34%) scaleX(1)"
-            : "translateX(-42%) scaleX(0.95)",
+            ? "translateX(-18%) scaleX(1)"
+            : "translateX(-24%) scaleX(0.96)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94), transform 1.4s cubic-bezier(.25,.46,.45,.94)",
         }}
       />
       <img
-        src={IMAGES.curtainCenter}
-        alt=""
-        className={`absolute w-[76%] md:w-[52%] h-auto max-w-none pointer-events-none select-none z-0 ${inView ? "curtain-center-in" : ""}`}
-        style={{
-          top: "2.2%",
-          left: "50%",
-          transformOrigin: "center top",
-          opacity: inView ? undefined : 0,
-          transform: inView ? undefined : "translateX(-50%) translateY(-10%)",
-        }}
-      />
-      <img
         src={IMAGES.curtainRight}
         alt=""
-        className="absolute w-[52%] md:w-[30%] max-w-none pointer-events-none select-none z-0"
+        className="absolute w-[34%] md:w-[18%] max-w-none pointer-events-none select-none z-0"
         style={{
           top: "2%",
           right: 0,
           transformOrigin: "right top",
           opacity: inView ? 1 : 0,
           transform: inView
-            ? "translateX(34%) scaleX(1)"
-            : "translateX(42%) scaleX(0.95)",
+            ? "translateX(18%) scaleX(1)"
+            : "translateX(24%) scaleX(0.96)",
           transition:
             "opacity 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s, transform 1.4s cubic-bezier(.25,.46,.45,.94) 0.15s",
         }}

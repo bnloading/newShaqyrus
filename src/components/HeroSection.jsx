@@ -11,18 +11,17 @@ export default function HeroSection() {
     }
 
     const startVideo = () => {
-      video.currentTime = 0;
       video.play().catch(() => {});
     };
 
-    video.load();
-    startVideo();
+    if (video.readyState >= 2) {
+      startVideo();
+    }
+
     video.addEventListener("loadeddata", startVideo);
-    video.addEventListener("canplay", startVideo);
 
     return () => {
       video.removeEventListener("loadeddata", startVideo);
-      video.removeEventListener("canplay", startVideo);
     };
   }, []);
 
@@ -36,9 +35,8 @@ export default function HeroSection() {
           autoPlay
           loop
           muted
-          defaultMuted
           playsInline
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
