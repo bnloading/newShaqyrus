@@ -184,7 +184,7 @@ export const TRANSLATIONS = {
     // Itinerary
     weddingWeekend: "Той бағдарламасы",
     itinerary: "Бағдарлама",
-    weekendDates: "23 – 24 маусым 2026",
+    weekendDates: "24 маусым 2026",
     cruiseDate: "23 маусым 2026",
     cruiseJoinText: "Коктейльдер мен тәттілерге қосылыңыз",
     cruiseDeparture: "Іс-шара орнынан шығу",
@@ -303,7 +303,7 @@ export const TRANSLATIONS = {
     // Itinerary
     weddingWeekend: "Хуримын хөтөлбөр",
     itinerary: "Хөтөлбөр",
-    weekendDates: "6-р сарын 23–24, 2026",
+    weekendDates: "2026 оны 6-р сарын 24",
     cruiseDate: "6-р сарын 23, 2026",
     cruiseJoinText: "Коктейль болон хүнс хоолонд нэгдэнэ үү",
     cruiseDeparture: "Талбайгаас гарах",

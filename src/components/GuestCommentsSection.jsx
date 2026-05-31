@@ -28,13 +28,28 @@ export default function GuestCommentsSection() {
   useEffect(() => {
     if (!db) return;
     const unsub = onSnapshot(
-      collection(db, "wishes"),
+      collection(db, "rsvps"),
       (snap) => {
         const docs = snap.docs
           .map((d) => ({ id: d.id, ...d.data() }))
+          .filter((comment) => {
+            const message =
+              comment.message || comment.text || comment.wish || "";
+            return String(message).trim().length > 0;
+          })
           .sort((a, b) => {
-            const ta = a.createdAt?.toMillis?.() ?? a.createdAt ?? 0;
-            const tb = b.createdAt?.toMillis?.() ?? b.createdAt ?? 0;
+            const ta =
+              a.submittedAt?.toMillis?.() ??
+              a.submittedAt ??
+              a.createdAt?.toMillis?.() ??
+              a.createdAt ??
+              0;
+            const tb =
+              b.submittedAt?.toMillis?.() ??
+              b.submittedAt ??
+              b.createdAt?.toMillis?.() ??
+              b.createdAt ??
+              0;
             return tb - ta;
           });
         setComments(docs);
