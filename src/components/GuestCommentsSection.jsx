@@ -17,7 +17,13 @@ export default function GuestCommentsSection() {
   const [comments, setComments] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  return null;
+  const goToSlide = (nextIndex) => {
+    setActiveIndex((current) => {
+      const total = comments.length;
+      if (!total) return current;
+      return (nextIndex + total) % total;
+    });
+  };
 
   useEffect(() => {
     if (!db) return;
