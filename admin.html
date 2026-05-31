@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diana & Richard – RSVP Admin Dashboard</title>
+    <link rel="stylesheet" href="css/jzm0juw.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #fdfbf7; /* Warm Ivory */
+        --bg-card: #ffffff;
+        --text-main: #1a1a1a;
+        --text-muted: #5a5a5a;
+        --accent-gold: #c5a059; /* Signature Gold */
+        --accent-gold-hover: #b08d47;
+        --border-color: rgba(197, 160, 89, 0.2);
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Auth Panel styles */
+      #auth-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 20px;
+      }
+
+      .auth-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 48px 32px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        text-align: center;
+        position: relative;
+      }
+
+      .auth-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        background: linear-gradient(
+          180deg,
+          var(--accent-gold) 0%,
+          var(--bg-primary) 100%
+        );
+      }
+
+      .auth-logo {
+        width: 56px;
+        margin-bottom: 24px;
+      }
+
+      .auth-title {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+      }
+
+      .auth-subtitle {
+        font-size: 13px;
+        color: var(--text-muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+        color: var(--text-muted);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background: #fafaf9;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--accent-gold);
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+      }
+
+      .btn-gold {
+        width: 100%;
+        padding: 14px 28px;
+        background: var(--accent-gold);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .btn-gold:hover {
+        background: var(--accent-gold-hover);
+        box-shadow: 0 4px 12px rgba(197, 160, 89, 0.25);
+      }
+
+      /* Main Dashboard styles */
+      #dashboard-container {
+        display: none; /* hidden until logged in */
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      header {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .header-logo {
+        width: 40px;
+      }
+
+      .header-title-section h1 {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+      }
+
+      .header-title-section p {
+        font-size: 11px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-top: 2px;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .btn-outline {
+        padding: 10px 20px;
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        color: var(--text-main);
+        border-color: var(--text-main);
+        background: rgba(0, 0, 0, 0.02);
+      }
+
+      main {
+        padding: 40px;
+        flex-grow: 1;
+        max-width: 1400px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--shadow-soft);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--accent-gold);
+      }
+
+      .stat-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+
+      .stat-val {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        color: var(--text-main);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .stat-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      /* Data Area */
+      .data-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .data-header {
+        padding: 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .search-box {
+        max-width: 320px;
+        width: 100%;
+        position: relative;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      th {
+        background: #fafaf9;
+        padding: 16px 24px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      td {
+        padding: 18px 24px;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        vertical-align: middle;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background: rgba(197, 160, 89, 0.02);
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-yes {
+        background: rgba(22, 163, 74, 0.1);
+        color: #15803d;
+      }
+
+      .badge-no {
+        background: rgba(220, 38, 38, 0.1);
+        color: #b91c1c;
+      }
+
+      .badge-event {
+        background: rgba(197, 160, 89, 0.15);
+        color: #9c7b39;
+        font-weight: 600;
+        margin-right: 4px;
+      }
+
+      .message-bubble {
+        max-width: 280px;
+        font-style: italic;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+      }
+
+      .message-bubble:hover {
+        text-decoration: underline;
+      }
+
+      /* Modal for custom messages */
+      #detail-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 20000;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .detail-card {
+        background: #fdfbf7;
+        border: 1px solid var(--accent-gold);
+        border-radius: 20px;
+        padding: 36px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+        position: relative;
+      }
+
+      .detail-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 24px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--text-muted);
+      }
+
+      .detail-title {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        margin-bottom: 24px;
+        color: var(--text-main);
+      }
+
+      .detail-body {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-muted);
+        white-space: pre-wrap;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 16px 20px;
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        main {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- AUTHENTICATION FORM -->
+    <div id="auth-container">
+      <div class="auth-card">
+        <img
+          class="auth-logo"
+          src="images/monogram-dd4gsvtc.png"
+          alt="Monogram"
+        />
+        <h2 class="auth-title">Diana & Richard</h2>
+        <p class="auth-subtitle">RSVP Dashboard Login</p>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="admin-email">Email Address</label>
+            <input
+              type="email"
+              id="admin-email"
+              class="form-control"
+              placeholder="diana@richard.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="admin-password">Password</label>
+            <input
+              type="password"
+              id="admin-password"
+              class="form-control"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-gold">Sign In</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD PANEL -->
+    <div id="dashboard-container">
+      <header>
+        <div class="header-logo-section">
+          <img
+            class="header-logo"
+            src="images/monogram-dd4gsvtc.png"
+            alt="D&R"
+          />
+          <div class="header-title-section">
+            <h1>Diana & Richard</h1>
+            <p>Wedding RSVP Administration</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="btn-export" class="btn-outline">Export to CSV</button>
+          <button id="btn-logout" class="btn-outline">Log Out</button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Real-time Stats Cards -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total RSVPs</span>
+            <span class="stat-val" id="stat-total">0</span>
+            <span class="stat-sub">Guest replies received</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Attending</span>
+            <span class="stat-val" id="stat-attending">0</span>
+            <span class="stat-sub">Delighted acceptances</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Declining</span>
+            <span class="stat-val" id="stat-declined">0</span>
+            <span class="stat-sub">Regretfully declined</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Seating</span>
+            <span class="stat-val" id="stat-guests">0</span>
+            <span class="stat-sub">Adults attending</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Bosphorus Cruise</span>
+            <span class="stat-val" id="stat-cruise">0</span>
+            <span class="stat-sub">July 22nd guests</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Children</span>
+            <span class="stat-val" id="stat-children">0</span>
+            <span class="stat-sub">Accompanying children</span>
+          </div>
+        </section>
+
+        <!-- Data Table Area -->
+        <section class="data-card">
+          <div class="data-header">
+            <h2
+              style="
+                font-family: var(--font-serif);
+                font-size: 22px;
+                font-weight: 400;
+              "
+            >
+              Guest Responses
+            </h2>
+            <div class="search-box">
+              <input
+                type="text"
+                id="search-input"
+                class="form-control"
+                placeholder="Search guests by name..."
+              />
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table id="rsvps-table">
+              <thead>
+                <tr>
+                  <th>Guest Name</th>
+                  <th>Email Address</th>
+                  <th>RSVP Status</th>
+                  <th>Party Size</th>
+                  <th>Accompanying Children</th>
+                  <th>Attending Events</th>
+                  <th>Message for the Couple</th>
+                  <th>Submitted Date</th>
+                </tr>
+              </thead>
+              <tbody id="rsvps-tbody">
+                <tr>
+                  <td
+                    colspan="8"
+                    style="
+                      text-align: center;
+                      color: var(--text-muted);
+                      padding: 40px;
+                    "
+                  >
+                    Waiting for connection...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- DETAIL MESSAGE MODAL -->
+    <div id="detail-modal">
+      <div class="detail-card">
+        <button class="detail-close" onclick="closeDetailModal()">
+          &times;
+        </button>
+        <h3 class="detail-title" id="detail-modal-title">Message</h3>
+        <div class="detail-body" id="detail-modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Firebase Integration Script -->
+    <script type="module">
+      // Core Firebase SDK scripts (Modular)
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        onSnapshot,
+        query,
+        orderBy,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+      // Same configuration loaded dynamically
+      const firebaseConfig = {
+        apiKey: "AIzaSyDN_HPzbKc_eLjbCEqoLuzGECbYoFhuOwk",
+        authDomain: "saya-24ec4.firebaseapp.com",
+        projectId: "saya-24ec4",
+        storageBucket: "saya-24ec4.firebasestorage.app",
+        messagingSenderId: "864275314522",
+        appId: "1:864275314522:web:2941818dbd6a9cd7506563",
+        measurementId: "G-YLK41QNRWW",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      const authContainer = document.getElementById("auth-container");
+      const dashboardContainer = document.getElementById("dashboard-container");
+
+      // Auth Listener
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // Authenticated - show dashboard
+          authContainer.style.display = "none";
+          dashboardContainer.style.display = "flex";
+          loadRSVPData();
+        } else {
+          // Not authenticated - show login
+          authContainer.style.display = "flex";
+          dashboardContainer.style.display = "none";
+        }
+      });
+
+      // Login Form Handler
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("admin-email").value;
+          const password = document.getElementById("admin-password").value;
+          const submitBtn = e.target.querySelector("button");
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Verifying...";
+
+          try {
+            await signInWithEmailAndPassword(auth, email, password);
+          } catch (error) {
+            console.error("Login failed:", error);
+            alert("Authentication failed: Invalid credentials.");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Sign In";
+          }
+        });
+
+      // Logout Handler
+      document.getElementById("btn-logout").addEventListener("click", () => {
+        signOut(auth);
+      });
+
+      // RSVPs storage container
+      let allRSVPs = [];
+
+      // Real-Time Firestore Sync & Dashboard Computations
+      function loadRSVPData() {
+        const rsvpsQuery = query(
+          collection(db, "rsvps"),
+          orderBy("submittedAt", "desc"),
+        );
+
+        onSnapshot(
+          rsvpsQuery,
+          (snapshot) => {
+            allRSVPs = [];
+            snapshot.forEach((doc) => {
+              allRSVPs.push({ id: doc.id, ...doc.data() });
+            });
+
+            renderTableAndStats(allRSVPs);
+          },
+          (error) => {
+            console.error("Error loading Firestore documents:", error);
+            alert(
+              "Permission denied or access error. Check your Firebase security rules configuration.",
+            );
+          },
+        );
+      }
+
+      // Filter Responses via Search Box
+      document.getElementById("search-input").addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = allRSVPs.filter(
+          (item) =>
+            item.fullName.toLowerCase().includes(term) ||
+            item.email.toLowerCase().includes(term),
+        );
+        renderTableAndStats(filtered, false); // Only refresh the table view, don't change top statistics cards
+      });
+
+      // Render Function
+      function renderTableAndStats(data, updateStats = true) {
+        const tbody = document.getElementById("rsvps-tbody");
+
+        if (data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 40px;">No responses found.</td></tr>`;
+          if (updateStats) calculateAndDisplayStats(data);
+          return;
+        }
+
+        tbody.innerHTML = "";
+
+        data.forEach((rsvp) => {
+          const tr = document.createElement("tr");
+
+          // Formatted date
+          let submittedDate = "N/A";
+          if (rsvp.submittedAt) {
+            const dateObj = rsvp.submittedAt.toDate
+              ? rsvp.submittedAt.toDate()
+              : new Date(rsvp.submittedAt);
+            submittedDate = dateObj.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+          }
+
+          // Badges
+          const attendingBadge =
+            rsvp.attending === "yes"
+              ? `<span class="badge badge-yes">Delighted</span>`
+              : `<span class="badge badge-no">Declined</span>`;
+
+          const eventsList = [];
+          if (rsvp.events?.cruise)
+            eventsList.push(`<span class="badge badge-event">Cruise</span>`);
+          if (rsvp.events?.wedding)
+            eventsList.push(`<span class="badge badge-event">Wedding</span>`);
+          const eventsBadge =
+            eventsList.length > 0 ? eventsList.join(" ") : "—";
+
+          // Message clipping
+          let messageMarkup = "—";
+          if (rsvp.message) {
+            messageMarkup = `<div class="message-bubble" onclick="openDetailModal('${rsvp.fullName.replace(/'/g, "\\'")}', '${rsvp.message.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">${rsvp.message}</div>`;
+          }
+
+          tr.innerHTML = `
+          <td style="font-weight: 500;">${rsvp.fullName}</td>
+          <td style="color: var(--text-muted);">${rsvp.email}</td>
+          <td>${attendingBadge}</td>
+          <td style="text-align: center; font-weight: 600;">${rsvp.attending === "yes" ? rsvp.guestCount : 0}</td>
+          <td style="text-align: center; color: var(--text-muted);">${rsvp.attending === "yes" && rsvp.children === "yes" ? "Yes" : "No"}</td>
+          <td>${eventsBadge}</td>
+          <td>${messageMarkup}</td>
+          <td style="color: var(--text-muted); font-size: 12px;">${submittedDate}</td>
+        `;
+
+          tbody.appendChild(tr);
+        });
+
+        if (updateStats) {
+          calculateAndDisplayStats(allRSVPs);
+        }
+      }
+
+      // Compute metrics
+      function calculateAndDisplayStats(data) {
+        let total = data.length;
+        let attending = 0;
+        let declined = 0;
+        let totalGuests = 0;
+        let cruise = 0;
+        let children = 0;
+
+        data.forEach((rsvp) => {
+          if (rsvp.attending === "yes") {
+            attending++;
+            totalGuests += parseInt(rsvp.guestCount || 1, 10);
+            if (rsvp.events?.cruise)
+              cruise += parseInt(rsvp.guestCount || 1, 10);
+            if (rsvp.children === "yes") children++;
+          } else {
+            declined++;
+          }
+        });
+
+        document.getElementById("stat-total").textContent = total;
+        document.getElementById("stat-attending").textContent = attending;
+        document.getElementById("stat-declined").textContent = declined;
+        document.getElementById("stat-guests").textContent = totalGuests;
+        document.getElementById("stat-cruise").textContent = cruise;
+        document.getElementById("stat-children").textContent = children;
+      }
+
+      // Export to Excel / CSV function
+      document.getElementById("btn-export").addEventListener("click", () => {
+        if (allRSVPs.length === 0) {
+          alert("No responses available to export.");
+          return;
+        }
+
+        const headers = [
+          "Guest Name",
+          "Email Address",
+          "RSVP Status",
+          "Party Size",
+          "Accompanying Children",
+          "Events",
+          "Message",
+          "Submitted At",
+        ];
+        const rows = allRSVPs.map((item) => {
+          let dateStr = "N/A";
+          if (item.submittedAt) {
+            const dateObj = item.submittedAt.toDate
+              ? item.submittedAt.toDate()
+              : new Date(item.submittedAt);
+            dateStr = dateObj.toISOString();
+          }
+
+          const events = [];
+          if (item.events?.cruise) events.push("Cruise");
+          if (item.events?.wedding) events.push("Wedding");
+
+          return [
+            item.fullName,
+            item.email,
+            item.attending === "yes" ? "Accept" : "Decline",
+            item.attending === "yes" ? item.guestCount : 0,
+            item.attending === "yes" && item.children === "yes" ? "Yes" : "No",
+            events.join(" & "),
+            item.message || "",
+            dateStr,
+          ];
+        });
+
+        let csvContent =
+          "data:text/csv;charset=utf-8," +
+          [
+            headers.join(","),
+            ...rows.map((e) =>
+              e
+                .map((val) => `"${val.toString().replace(/"/g, '""')}"`)
+                .join(","),
+            ),
+          ].join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute(
+          "download",
+          `RSVPs_Diana_and_Richard_Wedding_${new Date().toISOString().split("T")[0]}.csv`,
+        );
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Make detail modal helpers global
+      window.openDetailModal = function (name, body) {
+        document.getElementById("detail-modal-title").textContent =
+          `Message from ${name}`;
+        document.getElementById("detail-modal-body").textContent = body;
+        document.getElementById("detail-modal").style.display = "flex";
+      };
+
+      window.closeDetailModal = function () {
+        document.getElementById("detail-modal").style.display = "none";
+      };
+    </script>
+  </body>
+</html>

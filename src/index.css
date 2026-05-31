@@ -1,0 +1,69 @@
+/* Import existing compiled CSS (design + Tailwind classes preserved) */
+@import url("/css/index-b32mlqa.css");
+
+/* Cyrillic fallback: Cormorant Garamond is loaded in index.html */
+:root {
+  --font-display: "Cormorant Garamond", "parfumerie-script", serif;
+  --font-body: "Cormorant Garamond", "mrs-eaves", serif;
+}
+
+/* Override font utilities to include Cyrillic fallback */
+.font-body {
+  font-family: "Cormorant Garamond", "mrs-eaves", serif !important;
+}
+.font-display {
+  font-family: "Cormorant Garamond", "parfumerie-script", serif !important;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ─── Hero entrance animations ─── */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-sub-in {
+  animation: hero-fade-up 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+}
+.hero-name1-in {
+  animation: hero-fade-up 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+}
+.hero-amp-in {
+  animation: hero-fade-in 0.8s ease-out 0.9s both;
+}
+.hero-name2-in {
+  animation: hero-fade-up 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.1s both;
+}
+.hero-scroll-in {
+  animation: hero-fade-up 0.8s ease-out 1.5s both;
+}
+
+/* ─── Curtain section animations ─── */
+@keyframes curtain-drop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+.curtain-center-in {
+  animation: curtain-drop 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+}
