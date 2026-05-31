@@ -17,6 +17,8 @@ export default function GuestCommentsSection() {
   const [comments, setComments] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  return null;
+
   useEffect(() => {
     if (!db) return;
     const unsub = onSnapshot(

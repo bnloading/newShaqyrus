@@ -73,13 +73,6 @@ export default function RSVPSection() {
           message: message.trim(),
           submittedAt: serverTimestamp(),
         });
-        if (message.trim()) {
-          await addDoc(collection(db, "wishes"), {
-            name: name.trim(),
-            message: message.trim(),
-            createdAt: serverTimestamp(),
-          });
-        }
       }
       if (attending === "yes") {
         setDialog({
@@ -132,8 +125,16 @@ export default function RSVPSection() {
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Honeypot */}
-            <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+            <div
+              className="absolute -left-[9999px] opacity-0"
+              aria-hidden="true"
+            >
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             {/* Attending? */}
@@ -146,21 +147,28 @@ export default function RSVPSection() {
                   ["yes", t.yesAttend],
                   ["no", t.noAttend],
                 ].map(([val, label]) => (
-                  <label key={val} className="flex items-center gap-3 cursor-pointer">
+                  <label
+                    key={val}
+                    className="flex items-center gap-3 cursor-pointer"
+                  >
                     <button
                       type="button"
                       role="radio"
                       aria-checked={attending === val}
                       onClick={() => setAttending(val)}
                       className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
-                        attending === val ? "border-foreground" : "border-foreground/30"
+                        attending === val
+                          ? "border-foreground"
+                          : "border-foreground/30"
                       }`}
                     >
                       {attending === val && (
                         <span className="w-2 h-2 rounded-full bg-foreground block" />
                       )}
                     </button>
-                    <span className="font-body text-base text-foreground">{label}</span>
+                    <span className="font-body text-base text-foreground">
+                      {label}
+                    </span>
                   </label>
                 ))}
               </div>
@@ -210,7 +218,13 @@ export default function RSVPSection() {
                 disabled={submitting}
                 className="relative z-10 w-full bg-foreground hover:bg-foreground/90 text-background font-body tracking-[0.15em] uppercase text-sm py-4 rounded-lg border border-foreground/20 flex items-center justify-center gap-2 transition-colors disabled:opacity-60"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
                   <path d="m21.854 2.147-10.94 10.939" />
                 </svg>
