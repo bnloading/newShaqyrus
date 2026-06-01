@@ -22,7 +22,7 @@ export const COUPLE = {
 export const MEDIA = {
   introVideo: "/media/intro-video-new-celmqonn.mp4",
   heroVideo: "/media/hero-video-c3ekv1og.mp4",
-  backgroundMusic: "/media/wedding-background-music-yxy0nS2O.mp3",
+  backgroundMusic: "/media/toi.mp3",
   introPoster: introPosterFile,
 };
 
