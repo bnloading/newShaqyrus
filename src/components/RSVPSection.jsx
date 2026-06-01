@@ -48,6 +48,7 @@ export default function RSVPSection() {
 
   const [attending, setAttending] = useState("yes");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [dialog, setDialog] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -63,6 +64,19 @@ export default function RSVPSection() {
       });
     }
 
+    const normalizedEmail = email.trim();
+
+    if (
+      !normalizedEmail ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
+    ) {
+      return setDialog({
+        type: "error",
+        title: t.errorTitle,
+        body: t.validEmail,
+      });
+    }
+
     setSubmitting(true);
     try {
       if (db) {
@@ -70,6 +84,8 @@ export default function RSVPSection() {
           language: lang,
           attending,
           name: name.trim(),
+          fullName: name.trim(),
+          email: normalizedEmail,
           message: message.trim(),
           submittedAt: serverTimestamp(),
         });
@@ -90,6 +106,7 @@ export default function RSVPSection() {
         });
       }
       setName("");
+      setEmail("");
       setMessage("");
       setAttending("yes");
     } catch (err) {
@@ -185,6 +202,20 @@ export default function RSVPSection() {
                 placeholder={t.fullName}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="font-body text-base tracking-wide text-foreground font-medium block mb-2">
+                {t.emailAddress}
+              </label>
+              <input
+                type="email"
+                className="flex h-10 w-full rounded-md border px-3 py-2 text-base bg-transparent border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none font-body"
+                required
+                placeholder={t.emailAddress}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 

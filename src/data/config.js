@@ -44,9 +44,6 @@ export const IMAGES = {
   rosesBottomRight: "/images/roses-bottom-right-c-wj2fia.png",
   vaseLeft: "/images/vase-left-dfax-fu4.png",
   vaseRight: "/images/vase-right-bfgtpz8l.png",
-  hotelPeninsula: "/images/hotel-peninsula-is4jsbdc.png",
-  hotelMarriott: "/images/hotel-marriott-wv0e4iky.png",
-  hotelNovotel: "/images/hotel-novotel-cuychsif.png",
 };
 
 // ─── ІС-ШАРАЛАР ─────────────────────────────────────────────────────
@@ -70,28 +67,6 @@ export const EVENTS = {
       "https://www.google.com/maps/place/SKY+Palace/@48.9660524,89.9239171,17z",
   },
 };
-
-// ─── ҚОНАҚ ҮЙЛЕР ────────────────────────────────────────────────────
-export const HOTELS = [
-  {
-    name: "The Peninsula Istanbul",
-    price: "€735",
-    image: IMAGES.hotelPeninsula,
-    bookingUrl: null,
-  },
-  {
-    name: "JW Marriott Istanbul",
-    price: "€314",
-    image: IMAGES.hotelMarriott,
-    bookingUrl: null,
-  },
-  {
-    name: "Novotel Istanbul",
-    price: "€192",
-    image: IMAGES.hotelNovotel,
-    bookingUrl: null,
-  },
-];
 
 // ─── RSVP FIREBASE ──────────────────────────────────────────────────
 export const FIREBASE_CONFIG = {
@@ -206,20 +181,13 @@ export const TRANSLATIONS = {
     july23rd: "24 маусым",
     blackTie: "Қара галстук",
 
-    // Hotels
-    whereToStay: "Қайда тұруға болады",
-    recommendedHotels: "Іс-шара орнына жақын ұсынылатын қонақ үйлер",
-    priceDetails:
-      "бір түн · екілік стандарт бөлме · салықтар мен таңғы ас кіреді",
-    bookingSoon: "Брондау сілтемесі жақын арада",
-
     // Gift
     giftTitle: "Той сыйлығы",
     giftQuote: "Сіздің қатысуыңыз — бізге ең үлкен сыйлық.",
     giftDesc:
       "Егер бізді сыйлықпен марапаттағыңыз келсе, ақша сыйлықты артық көреміз. Банк деректемелері жеке хабарланады.",
 
-    guestCommentsTitle: "Сэтгэгдлүүд",
+    guestCommentsTitle: "Ізгі лебіздер",
     guestCommentsSubtitle: "Қонақтардың жылы сөздері",
     previousComment: "Алдыңғы пікір",
     nextComment: "Келесі пікір",
@@ -325,20 +293,13 @@ export const TRANSLATIONS = {
     july23rd: "6-р сарын 24",
     blackTie: "Хар галстук",
 
-    // Hotels
-    whereToStay: "Хаана байх вэ",
-    recommendedHotels: "Үйл явдлын газрын ойролцоо санал болгох зочид буудлууд",
-    priceDetails:
-      "шөнийн · хоёр орны стандарт өрөө · татвар ба өглийн цай оруулан",
-    bookingSoon: "Захиалгын холбоос удахгүй",
-
     // Gift
     giftTitle: "Хуримын бэлэг",
     giftQuote: "Таны ирэлт бол бидний хамгийн том бэлэг.",
     giftDesc:
       "Хэрэв та биднийг бэлгээр хүндэтгэхийг хүсвэл, бид мөнгөн бэлгийг илүүд үзнэ. Банкны дэлгэрэнгүй мэдээллийг тусад нь хуваалцана.",
 
-    guestCommentsTitle: "Ізгі лебіздер",
+    guestCommentsTitle: "Сэтгэгдлүүд",
     guestCommentsSubtitle: "Зочдын халуун үгс",
     previousComment: "Өмнөх сэтгэгдэл",
     nextComment: "Дараах сэтгэгдэл",

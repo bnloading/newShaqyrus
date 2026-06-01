@@ -90,9 +90,11 @@ export default function GuestCommentsSection() {
       <div className="mx-auto max-w-3xl">
         {/* Title */}
         <div className="mb-12 text-center">
-          <h2 className="mb-3 font-display text-5xl text-foreground md:text-7xl">
-            {t.guestCommentsTitle}
-          </h2>
+          {t.guestCommentsTitle && (
+            <h2 className="mb-3 font-display text-5xl text-foreground md:text-7xl">
+              {t.guestCommentsTitle}
+            </h2>
+          )}
           <p className="font-body text-sm uppercase tracking-[0.2em] text-foreground/45">
             {t.guestCommentsSubtitle}
           </p>
