@@ -219,7 +219,7 @@ export const TRANSLATIONS = {
     giftDesc:
       "Егер бізді сыйлықпен марапаттағыңыз келсе, ақша сыйлықты артық көреміз. Банк деректемелері жеке хабарланады.",
 
-    guestCommentsTitle: "Ізгі лебіздер",
+    guestCommentsTitle: "Сэтгэгдлүүд",
     guestCommentsSubtitle: "Қонақтардың жылы сөздері",
     previousComment: "Алдыңғы пікір",
     nextComment: "Келесі пікір",
@@ -359,7 +359,7 @@ export const TRANSLATIONS = {
     childrenQuery: "Хүүхдүүд дагалдах уу?",
     yes: "Тийм",
     no: "Үгүй",
-    messageForCouple: "Хосуудад тілек",
+    messageForCouple: "Хосуудад мэндчилгээ",
     messagePlaceholder: "Хосуудад сэтгэлийн үгийг бичнэ үү.",
     submitResponse: "Хариу илгээх",
 
